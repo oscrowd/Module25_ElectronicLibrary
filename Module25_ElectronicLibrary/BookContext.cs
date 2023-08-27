@@ -22,8 +22,8 @@ namespace Module25_ElectronicLibrary
             {
                 //Console.WriteLine("Доступные действия:\n'show': показать всех пользователей данные;\n'showone': выбрать пользователя по id;\n'add': добавить пользователя;\n'update': изменить имя;\n'delete': удалить по Id;\n'exit': выход\n");
                 Console.WriteLine("Доступные действия для книг:\n'show': показать все книги;\n'showone': выбрать книгу по id;\n'add': добавить книгу;\n'delete': удалить по Id;\n'update': изменить название книги;\n'exit': выход\n");
-                Console.WriteLine("\n'autcount': кол-во книг автора;\n'gencount': кол-во книг жанра;\n'ubcount': колво книг у пользователя;\n'bookexist': наличие книги \n'lastbook': новейшая книга;\n'yearorderdesc': список книг по дате выхода\n");
-                Console.WriteLine("\n'titleorder': все книги, отсортированные по названию;\n'genyearexist': наличие книг жанра за период;\n'ubexist': есть ли id книги у id читателя;");
+                Console.WriteLine("\n'autcount': кол-во книг автора;\n'gencount': кол-во книг жанра;\n'ubcount': колво книг у пользователя;\n'bookexist': наличие книги \n'lastbook': новейшая книга;\n'yeardesc': список книг по дате выхода\n");
+                Console.WriteLine("\n'titleorder': все книги, отсортированные по названию;\n'genyearexist': наличие книг жанра за период;\n'ubexist': есть ли id книги у id читателя;\n'exit': выход");
                 Console.Write("\nВведите нужное действие: ");
                 action = Console.ReadLine();
                 switch (action)
@@ -94,11 +94,11 @@ namespace Module25_ElectronicLibrary
                         int autorCount = _BookRepository.SelectAutorCount(autor);
                         Console.WriteLine("Количество книг автора {0}: {1}", autor,autorCount);
                         break;
-                    case "genrecount":
-                        Console.Write("Введите фамилию автора");
+                    case "gencount":
+                        Console.Write("Введите жанр");
                         string genre = Console.ReadLine();
                         int genreCount = _BookRepository.SelectGenreCount(genre);
-                        Console.WriteLine("Количество книг автора {0}: {1}", genre, genreCount);
+                        Console.WriteLine("Количество книг жанра {0}: {1}", genre, genreCount);
                         break;
                     case "ubcount":
                         Console.Write("Введите id пользователя");
@@ -117,7 +117,7 @@ namespace Module25_ElectronicLibrary
                     case "bookexist":
                         Console.Write("Введите фамилию автора");
                         autor = Console.ReadLine();
-                        Console.WriteLine("Введите новое название книги: ");
+                        Console.WriteLine("Введите название книги: ");
                         string title = Console.ReadLine();
                         bool bookexist = _BookRepository.ExistTitleAutor(autor, title);
                         if (bookexist)
@@ -169,6 +169,9 @@ namespace Module25_ElectronicLibrary
                             else Console.WriteLine("Книга {0} не на руках у пользователя {1}", idTemp2, idTemp);
                         }
                         else Console.WriteLine("Введено не числовое значение id пользователя и/или книги");
+                        break;
+                    default : 
+                        Console.WriteLine("Нет такого действия, посмотрите внимательно на спиок дейстий");
                         
                         break;
                 }

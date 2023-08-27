@@ -118,8 +118,8 @@ namespace Module25_ElectronicLibrary
             {
                 
                 List<Entities.Book> books = db.Books.ToList();
-                books.OrderByDescending(i => i.YearOfRelease).ToList();
-                Book book = books.FirstOrDefault();
+                List<Entities.Book> booksdesc = books.OrderByDescending(i => i.YearOfRelease).ToList();
+                Book book = booksdesc.FirstOrDefault();
                 return book;
             }
         }
